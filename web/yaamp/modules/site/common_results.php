@@ -628,7 +628,7 @@ foreach($db_blocks as $db_block)
 		echo '<span class="block orphan" style="padding: 2px; color: white; background-color: #d9534f;">Orphan</span>';
 
 	else if($db_block->category == 'immature')
-		echo '<span class="block immature" style="padding: 2px; color: white; background-color: #f0ad4e">Immature ('.$db_block->confirmations.')</span>';
+		echo '<span class="block immature" style="padding: 2px; color: white; background-color: #f0ad4e">Immature ('.$db_block->confirmations.'/'.$coin->mature_blocks.')</span>';
 
 	else if($db_block->category == 'stake')
 		echo '<span class="block stake" style="padding: 2px; color: white; background-color: #a0a0a0">Stake ('.$db_block->confirmations.')</span>';
