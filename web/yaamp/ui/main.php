@@ -126,8 +126,10 @@ function showPageHeader()
 
 	$mining = getdbosql('db_mining');
 	$nextpayment = date('H:i T', $mining->last_payout+YAAMP_PAYMENTS_FREQ);
-
-	echo '<span style="font-size: .8em;">Next Payout: '.$nextpayment.'</span>';
+	$time_until_next_payout = ($mining->last_payout+YAAMP_PAYMENTS_FREQ)-time();
+	$time_until_next_payout_minutes = floor($time_until_next_payout/60)%60;
+	$time_until_next_payout_hours = floor($time_until_next_payout/60/60);
+	echo '<span style="font-size: .8em;">Next Payout: '.$nextpayment.' (in '.$time_until_next_payout_hours.' hrs '.$time_until_next_payout_minutes.' mins)</span>';
 
 	echo "</div>";
 	echo "</div>";
