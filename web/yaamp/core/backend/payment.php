@@ -104,6 +104,13 @@ function BackendCoinPayments($coin)
 
 	foreach($users as $user)
 	{
+		$deposit_info = $remote->validateaddress($user->username);
+		if(!$deposit_info || !isset($deposit_info['isvalid']) || !$deposit_info['isvalid'])
+		{
+			debuglog("payment: invalid user payment address {$user->username}");
+			continue;
+		}
+
 		$total_to_pay += round($user->balance, 8);
 		$addresses[$user->username] = round($user->balance, 8);
 		// transaction xxx has too many sigops: 1035 > 1000
